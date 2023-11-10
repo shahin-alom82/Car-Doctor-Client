@@ -14,9 +14,9 @@ const Navbar = () => {
     }
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/product"> About</NavLink></li>
+        {/* <li><NavLink to="/product"> About</NavLink></li>
         <li><NavLink to="/addcard">Services </NavLink></li>
-        <li><NavLink to="/log">Blog</NavLink></li>
+        <li><NavLink to="/log">Blog</NavLink></li> */}
 
         {
             user?.email ? <>
@@ -30,7 +30,7 @@ const Navbar = () => {
     </>
     return (
         <div>
-            <div className="navbar rounded-lg mt-2 bg-base-200 h-24">
+            <div className="navbar rounded-lg mt-2 bg-blue-100 h-24">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">

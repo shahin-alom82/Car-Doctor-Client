@@ -1,19 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Components/AutProvider';
 import BookingRow from '../BookingRow/BookingRow';
+import axios from 'axios';
 
 const Bookings = () => {
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
-
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
     useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setBookings(data))
+        axios.get(url, {withCredentials: true})
+        .then(res => {
+            setBookings(res.data)
+        })
+        // fetch(url)
+        //     .then(res => res.json())
+        //     .then(data => setBookings(data))
     }, [url]);
-
 
     const handleDelete = id => {
         const proccesd = confirm('Are You Sure You Want To Delete');
@@ -32,6 +35,7 @@ const Bookings = () => {
                 })
         }
     }
+
     const handleConfirm = id => {
         fetch(`http://localhost:5000/bookings/${id}`, {
             method: 'PATCH',
@@ -59,7 +63,6 @@ const Bookings = () => {
     return (
         <div>
             <h1 className='text-4xl text-center mt-10'>Your Bookings : {bookings.length}</h1>
-
 
 
             <div className="overflow-x-auto w-full">

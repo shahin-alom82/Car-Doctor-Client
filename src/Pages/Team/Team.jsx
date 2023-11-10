@@ -12,7 +12,7 @@ const Team = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-10">
                 {/* Card - 1 */}
-                <div className="card bg-gradient-to-r bg-slate-100">
+                <div className="card bg-gradient-to-r bg-slate-100 h-[440px]">
                     <div className="rounded-lg ">
                         <img className="h-[300px] mx-auto  object-cover rounded-lg" src={img1} alt="Shoes" />
                     </div>
@@ -28,7 +28,7 @@ const Team = () => {
                     </div>
                 </div>
                 {/* Card - 2 */}
-                <div className="card bg-gradient-to-r bg-slate-100">
+                <div className="card bg-gradient-to-r bg-slate-100 h-[440px]">
                     <div className="rounded-lg ">
                         <img className="h-[300px] mx-auto  object-cover rounded-lg" src={img2} alt="Shoes" />
                     </div>
@@ -44,7 +44,7 @@ const Team = () => {
                     </div>
                 </div>
                 {/* Card - 3 */}
-                <div className="card bg-gradient-to-r bg-slate-100">
+                <div className="card bg-gradient-to-r bg-slate-100 h-[440px]">
                     <div className="rounded-lg ">
                         <img className="h-[300px] mx-auto  object-cover rounded-lg" src={img3} alt="Shoes" />
                     </div>

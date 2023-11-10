@@ -13,13 +13,11 @@ const Login = () => {
     const handleGoogleLogin = () => {
         signInWithPopup(auth, provider)
     }
-    
     const [showPassword, setShowPassword] = useState("");
     const [error, setError] = useState(null);
     const { signIn } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
-
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -29,24 +27,24 @@ const Login = () => {
 
         signIn(email, password)
 
-        .then(result => {
-            const loggedInUser = result.user;
-            console.log(loggedInUser);
-            const user = {email};
-            // navigate(location?.state ? location?.state : "/")
-            // Get Accsess Token
+            .then(result => {
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const user = { email };
 
-            axios.post("http://localhost:5000/jwt", user)
-            .then(res => {
-                console.log(res.data)
+                // Get Accsess Token
+                axios.post("http://localhost:5000/jwt", user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.success) {
+                            navigate(location?.state ? location?.state : "/")
+                        }
+                    })
             })
-
-        })
-        .catch(error => {
-            console.error(error)
-        })
-        }
-    
+            .catch(error => {
+                console.error(error)
+            })
+    }
     return (
         <div>
             <div className="hero min-h-screen">
@@ -78,6 +76,7 @@ const Login = () => {
                                     <a href="#" className="label-text-alt link link-hover mt-4">Forgot password?</a>
                                 </label>
                             </div>
+                            
                             <div>
                                 <h1 className="text-xl font-bold">Login With</h1>
                                 <button onClick={handleGoogleLogin} className="btn btn-outline rounded-b mt-4 w-40 lowercase">
@@ -90,6 +89,7 @@ const Login = () => {
                                     GitHub
                                 </button>
                             </div>
+
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>

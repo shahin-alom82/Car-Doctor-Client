@@ -5,14 +5,18 @@ import { FaEyeSlash, FaEye } from 'react-icons/fa';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Components/AutProvider";
+import Swal from "sweetalert2";
 const Register = () => {
-    // const auth = getAuth();
     const auth = getAuth()
     const provider = new GoogleAuthProvider();
     const handleGoogleLogin = async () => {
         try {
             await signInWithPopup(auth, provider);
-             toast("GoogleLogin Successfully!");
+            //  toast("GoogleLogin Successfully!");
+            Swal.fire(
+                'Good job!',
+                'Register Successfully!'
+            )
         } catch (error) {
             console.error("Google Login Error:", error)
         }
@@ -28,10 +32,9 @@ const Register = () => {
         const form = new FormData(e.currentTarget);
         const name = form.get('name')
         const email = form.get('email')
-        const photo = form.get('photo')
         const password = form.get('password')
         const accept = form.get('terms')
-        console.log(name, email, photo, password, accept);
+        console.log(name, email, password, accept);
         setRegijsterArror("");
 
         if (password.length < 6) {
@@ -50,7 +53,10 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 console.log(result.user)
-                toast('Email Create Successfuly!')
+                Swal.fire(
+                    'Good job!',
+                    'Register Successfully!'
+                )
                 // navigate("/login")
             })
             .catch(error => {
@@ -67,8 +73,8 @@ const Register = () => {
                         <img src={img} alt="" />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm bg-slate-300 ">
-                    <h1 className="text-3xl text-center mt-6 font-bold ">Sign Up Now !</h1>
-                        <form onSubmit={handleRegister} className="card-body "> 
+                        <h1 className="text-3xl text-center mt-6 font-bold ">Sign Up Now !</h1>
+                        <form onSubmit={handleRegister} className="card-body ">
                             <div className="form-control relative">
                                 <label className="label">
                                     <span className="label-text"> Your Name</span>
@@ -82,12 +88,12 @@ const Register = () => {
                                 <input type="Email" name="email" required placeholder="Your Email Address" className="input input-bordered" />
                             </div>
 
-                            <div className="form-control">
+                            {/* <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
                                 <input type="text" name="photo" required placeholder="Photo URL" className="input input-bordered" />
-                            </div>
+                            </div> */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>

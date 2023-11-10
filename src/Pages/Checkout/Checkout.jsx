@@ -19,7 +19,7 @@ const Checkout = () => {
             customerName: name,
             email,
             img,
-            date, 
+            date,
             service: title,
             service_id: _id,
             price: price,
@@ -29,20 +29,20 @@ const Checkout = () => {
         fetch("http://localhost:5000/bookings", {
             method: "POST",
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(booking)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data.insertedId){
-                Swal.fire(
-                    'Booked',
-                    'Added Successfuly!',
-                  )
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.insertedId) {
+                    Swal.fire(
+                        'Booked',
+                        'Added Successfuly!',
+                    )
+                }
+            })
 
     }
     return (
@@ -79,7 +79,6 @@ const Checkout = () => {
                     <input className="btn btn-primary btn-block" type="submit" value="Order Confirm" />
                 </div>
             </form>
-
         </div>
     );
 };
